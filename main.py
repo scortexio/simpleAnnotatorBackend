@@ -37,3 +37,12 @@ async def annotations(id: str, body: List[Annotation]):
     image = database[int(id)]
     image.annotations = body
     return Response()
+
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
