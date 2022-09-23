@@ -6,6 +6,13 @@ from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import Response
 
 app = FastAPI()
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://*", "https://*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 class Annotation(BaseModel):
@@ -40,10 +47,3 @@ async def annotations(id: str, body: List[Annotation]):
     return Response()
 
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
